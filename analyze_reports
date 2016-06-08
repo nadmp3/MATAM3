@@ -1,0 +1,16 @@
+#! /usr/local/bin/tcsh   -f
+
+set number_off_elments=${#argv}
+#echo $number_off_elments
+if ($number_off_elments > 5) then
+	set company = "$6"
+else
+	set company = " "
+endif
+set month = $4
+grep "$company" $2 > temp
+source validate_input $1 temp  | grep -v "Bad input:"   | grep  "/$month "| sort +1 -n | source Q2_avg.csh $2 $number_off_elments | sort -n -r -k 2 -k 1
+if (-f temp) rm temp
+
+
+

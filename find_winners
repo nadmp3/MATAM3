@@ -1,0 +1,4 @@
+#! /usr/local/bin/tcsh   -f
+
+	cat $2 | sort -f -k 2 | source help_winner.csh $1 $2 | sort -n -k 2 -k 3 | head -n $4
+
